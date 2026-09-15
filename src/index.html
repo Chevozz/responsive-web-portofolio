@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prema | Beranda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#3b82f6', darkBg: '#09090b', darkCard: '#18181b', borderC: '#27272a' } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid #e4e4e7; }
+        .dark .glass-nav { background: rgba(9, 9, 11, 0.8); border-bottom: 1px solid #27272a; }
+    </style>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-zinc-50 text-zinc-900 dark:bg-darkBg dark:text-zinc-100 transition-colors duration-300 min-h-screen flex flex-col">
+    <nav class="fixed w-full top-0 z-40 glass-nav transition-all">
+        <div class="container mx-auto px-6 py-4 max-w-6xl flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-black tracking-tighter">PREMA<span class="text-brand">.</span></a>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="index.html" class="text-brand">Beranda</a>
+                <a href="tentang.html" class="hover:text-brand transition">Tentang</a>
+                <a href="karya.html" class="hover:text-brand transition">Karya</a>
+                <a href="kontak.html" class="hover:text-brand transition">Kontak</a>
+                
+                <div class="flex items-center gap-4 border-l border-zinc-300 dark:border-borderC pl-6">
+                    <button onclick="toggleSearchModal()" class="hover:text-brand transition flex items-center gap-2 text-zinc-500 hover:text-brand" title="Cari Informasi">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <button onclick="toggleTheme()" class="p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition">🌓</button>
+                </div>
+            </div>
+            <div class="md:hidden flex items-center gap-4">
+                <button onclick="toggleSearchModal()" class="text-zinc-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="p-2 text-zinc-900 dark:text-zinc-100">☰</button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-darkCard border-t border-zinc-200 dark:border-borderC px-6 py-4 space-y-4 text-sm font-medium">
+            <a href="index.html" class="block text-brand">Beranda</a>
+            <a href="tentang.html" class="block hover:text-brand">Tentang</a>
+            <a href="karya.html" class="block hover:text-brand">Karya</a>
+            <a href="kontak.html" class="block hover:text-brand">Kontak</a>
+            <button onclick="toggleTheme()" class="w-full text-left mt-4 border-t border-zinc-200 dark:border-borderC pt-4 flex justify-between items-center">Ganti Tema <span>🌓</span></button>
+        </div>
+    </nav>
+    <main class="flex-grow flex items-center relative pt-20 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="container mx-auto px-6 max-w-6xl grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="order-2 md:order-1 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-800 text-xs font-semibold tracking-wide uppercase mb-6 border border-zinc-300 dark:border-borderC">
+                    <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span> Available for projects
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
+                    Crafting <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">Digital</span> Experiences.
+                </h1>
+                <p class="text-lg text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                    Saya Made Premadharma Yogananda, mahasiswa Ilmu Komputer yang berfokus pada pengembangan antarmuka interaktif, desain UI/UX, dan infrastruktur web modern.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="karya.html" class="px-8 py-3.5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-bold rounded-lg hover:scale-105 transition-transform shadow-lg text-center">Jelajahi Karya</a>
+                    <a href="kontak.html" class="px-8 py-3.5 bg-zinc-200 dark:bg-darkCard text-zinc-900 dark:text-zinc-100 font-bold rounded-lg border border-zinc-300 dark:border-borderC hover:border-brand transition-colors text-center">Hubungi Saya</a>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center">
+                <img src="profile.jpeg" alt="Prema" class="w-64 h-64 md:w-96 md:h-96 object-cover rounded-3xl rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl border-8 border-white dark:border-darkCard">
+            </div>
+        </div>
+    </main>
+    <div id="searchModal" class="fixed inset-0 z-[60] hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleSearchModal()"></div>
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 transition-transform duration-300 scale-95" id="searchBox">
+            <div class="bg-white dark:bg-darkCard rounded-2xl shadow-2xl border border-zinc-200 dark:border-borderC overflow-hidden">
+                <div class="p-4 border-b border-zinc-200 dark:border-borderC flex items-center gap-3">
+                    <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" id="globalSearchInput" onkeyup="performSearch()" placeholder="Cari portofolio, skill, info..." class="w-full bg-transparent border-none focus:outline-none text-zinc-900 dark:text-zinc-100 text-lg">
+                    <button onclick="toggleSearchModal()" class="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 text-xs font-bold px-2 py-1 bg-zinc-100 dark:bg-zinc-800 rounded">ESC</button>
+                </div>
+                <div id="searchResults" class="max-h-96 overflow-y-auto p-4 space-y-2">
+                    <div class="text-center text-zinc-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Server", "Design") untuk mencari...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        const siteData = [
+            { title: "Aplikasi TrackKuy", category: "UI/UX Design", desc: "Aplikasi optimasi rute perjalanan wisata di Bali.", link: "karya.html" },
+            { title: "Home Server Infrastructure", category: "DevOps", desc: "Setup Ubuntu Server, Docker, CasaOS, dan jaringan Tailscale.", link: "karya.html" },
+            { title: "Technical Garment Mockup", category: "Vector Design", desc: "Pembuatan desain teknis mockup jaket vektor menggunakan Adobe Illustrator.", link: "karya.html" },
+            { title: "Desain Lanyard & Kebutuhan Event", category: "Graphic Design", desc: "Perancangan lanyard dan merchandise untuk identitas visual acara.", link: "karya.html" },
+            { title: "Setting Up a Minecraft Server", category: "Game Server", desc: "Manajemen Pterodactyl, Paper Server, dan konfigurasi in-game.", link: "karya.html" },
+            { title: "Setting Up a Discord Server", category: "Community", desc: "Pembuatan, konfigurasi role, dan bot untuk server Discord.", link: "karya.html" },
+            { title: "Profil Made Premadharma Yogananda", category: "Tentang", desc: "Biodata, NIM 2415101056, Ilmu Komputer Undiksha.", link: "tentang.html" },
+            { title: "Hubungi Saya", category: "Kontak", desc: "Kirim pesan dan kolaborasi.", link: "kontak.html" }
+        ];
+        
+        const modal = document.getElementById('searchModal');
+        const searchBox = document.getElementById('searchBox');
+        const inputField = document.getElementById('globalSearchInput');
+
+        function toggleSearchModal() {
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    searchBox.classList.remove('scale-95');
+                    inputField.focus();
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                searchBox.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    inputField.value = ''; 
+                    performSearch(); 
+                }, 300);
+            }
+        }
+        function performSearch() {
+            const query = inputField.value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (query.length === 0) {
+                resultsContainer.innerHTML = '<div class="text-center text-zinc-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Server", "Design") untuk mencari...</div>';
+                return;
+            }
+
+            const filtered = siteData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.desc.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                resultsContainer.innerHTML = '<div class="text-center text-zinc-500 text-sm py-8">Tidak ada hasil yang cocok.</div>';
+                return;
+            }
+
+            resultsContainer.innerHTML = filtered.map(item => `
+                <a href="${item.link}" class="block p-4 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition border border-transparent hover:border-zinc-200 dark:hover:border-borderC">
+                    <div class="flex justify-between items-start mb-1">
+                        <h4 class="font-bold text-zinc-900 dark:text-zinc-100">${item.title}</h4>
+                        <span class="text-[10px] uppercase font-bold bg-brand/10 text-brand px-2 py-1 rounded">${item.category}</span>
+                    </div>
+                    <p class="text-xs text-zinc-500">${item.desc}</p>
+                </a>
+            `).join('');
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) toggleSearchModal();
+        });
+    </script>
+</body>
+</html>
