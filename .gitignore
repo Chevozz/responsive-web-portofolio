@@ -1,3 +1,24 @@
 # Mengabaikan file spesifik
 SEMANTIC HTML WEB PAGES AND TAILWINDCSS SETUP.docx
 SEMANTIC HTML WEB PAGES AND TAILWINDCSS SETUP.pdf
+
+# Mengabaikan seluruh folder beserta isinya
+.agents/
+.augment/
+.claude/
+.codebuddy/ 
+.codewhale/
+.continue/ 
+.cursor/ 
+.factory/ 
+.gemini/
+.github/ 
+.kilocode/ 
+.kiro/ 
+.opencode/ 
+.qoder/ 
+.roo/ 
+.trae/ 
+.warp/
+.windsurf/
+node_modules/
