@@ -1,18 +1,61 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prema | Karya</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#3b82f6', darkBg: '#09090b', darkCard: '#18181b', borderC: '#27272a' } } } }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        },
+                        darkBg: '#090a10',
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
+                    }
+                }
+            }
+        }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid #e4e4e7; }
-        .dark .glass-nav { background: rgba(9, 9, 11, 0.8); border-bottom: 1px solid #27272a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
+        }
+        .dark .glass-panel {
+            background: rgba(13, 16, 28, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass-nav {
+            background: rgba(9, 10, 16, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
     </style>
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -22,138 +65,261 @@
         }
     </script>
 </head>
-<body class="bg-zinc-50 text-zinc-900 dark:bg-darkBg dark:text-zinc-100 transition-colors duration-300 min-h-screen pt-24 pb-12">
-    <nav class="fixed w-full top-0 z-40 glass-nav transition-all">
+<body class="bg-[#f8fafc] text-slate-800 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col relative overflow-x-hidden selection:bg-blue-500 selection:text-white">
+
+    <!-- Ambient Mesh Glows in Background -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-32 -right-20 w-[500px] h-[500px] bg-gradient-to-bl from-blue-400/20 to-cyan-500/15 dark:from-blue-600/15 dark:to-cyan-600/10 rounded-full blur-[100px]"></div>
+        <div class="absolute top-1/2 -left-32 w-[550px] h-[550px] bg-gradient-to-tr from-indigo-400/20 to-purple-400/15 dark:from-indigo-600/10 dark:to-purple-600/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- Glass Navbar -->
+    <nav class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
         <div class="container mx-auto px-6 py-4 max-w-6xl flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-black tracking-tighter">PREMA<span class="text-brand">.</span></a>
-            <div class="hidden md:flex items-center space-x-8 font-medium text-sm">
-                <a href="index.html" class="hover:text-brand transition">Beranda</a>
-                <a href="tentang.html" class="hover:text-brand transition">Tentang</a>
-                <a href="karya.html" class="text-brand">Karya</a>
-                <a href="kontak.html" class="hover:text-brand transition">Kontak</a>
-                <div class="flex items-center gap-4 border-l border-zinc-300 dark:border-borderC pl-6">
-                    <button onclick="toggleSearchModal()" class="text-zinc-500 hover:text-brand transition"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
-                    <button onclick="toggleTheme()" class="p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 transition">🌓</button>
+            <a href="index.html" class="flex items-center gap-2 group">
+                <span class="text-xl font-extrabold tracking-tight">PREMA<span class="text-blue-500">.</span></span>
+            </a>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex items-center space-x-1 font-medium text-sm">
+                <a href="index.html" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-white/5 transition-all">Beranda</a>
+                <a href="tentang.html" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-white/5 transition-all">Tentang</a>
+                <a href="karya.html" class="px-4 py-2 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold border border-blue-500/20 transition-all">Karya</a>
+                <a href="kontak.html" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-white/5 transition-all">Kontak</a>
+                
+                <div class="flex items-center gap-2.5 border-l border-slate-200 dark:border-white/10 pl-5 ml-2">
+                    <button onclick="toggleSearchModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400/40 transition-all text-xs" title="Cari Informasi">
+                        <svg class="w-4 h-4 fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <span>Cari...</span>
+                        <kbd class="px-1.5 py-0.5 rounded bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 font-mono text-[10px]">Ctrl+K</kbd>
+                    </button>
+                    <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm" aria-label="Toggle Theme">
+                        <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
                 </div>
             </div>
-            <div class="md:hidden flex items-center gap-4">
-                <button onclick="toggleSearchModal()" class="text-zinc-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
-                <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="p-2 text-zinc-900 dark:text-zinc-100">☰</button>
+
+            <!-- Menu Mobile Trigger -->
+            <div class="md:hidden flex items-center gap-2">
+                <button onclick="toggleSearchModal()" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+                <button onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300">
+                    <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
-        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-darkCard border-t border-zinc-200 dark:border-borderC px-6 py-4 space-y-4 text-sm font-medium absolute w-full z-30 shadow-lg">
-            <a href="index.html" class="block hover:text-brand">Beranda</a>
-            <a href="tentang.html" class="block hover:text-brand">Tentang</a>
-            <a href="karya.html" class="block text-brand">Karya</a>
-            <a href="kontak.html" class="block hover:text-brand">Kontak</a>
-            <button onclick="toggleTheme()" class="w-full text-left mt-4 border-t border-zinc-200 dark:border-borderC pt-4 flex justify-between">Ganti Tema <span>🌓</span></button>
+
+        <!-- Dropdown Mobile -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel mx-4 mb-4 rounded-2xl p-4 space-y-2 text-sm font-medium border border-white/50 dark:border-white/10 shadow-2xl">
+            <a href="index.html" class="block px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">Beranda</a>
+            <a href="tentang.html" class="block px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">Tentang</a>
+            <a href="karya.html" class="block px-4 py-2.5 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold">Karya</a>
+            <a href="kontak.html" class="block px-4 py-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5">Kontak</a>
         </div>
     </nav>
 
-    <main class="container mx-auto px-6 max-w-6xl">
-        <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Pilihan <span class="text-brand">Proyek.</span></h1>
-        <p class="text-zinc-500 mb-12">Koleksi eksplorasi desain visual, tata letak antarmuka, dan infrastruktur sistem.</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 max-w-6xl pt-32 pb-20 relative z-10 flex-grow">
+        
+        <!-- Header -->
+        <div class="mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-500/20">Showcase Proyek</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4">
+                Pilihan <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Karya.</span>
+            </h1>
+            <p class="text-slate-500 dark:text-slate-400 mt-2 text-base">Eksplorasi antarmuka digital, desain grafis teknis, serta pengelolaan infrastruktur sistem.</p>
+        </div>
 
+        <!-- Project Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="group bg-white dark:bg-darkCard rounded-3xl overflow-hidden border border-zinc-200 dark:border-borderC shadow-sm hover:shadow-xl transition-shadow">
-                <div class="h-64 bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                    <img src="trackkuy.png" alt="TrackKuy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full">UI/UX Design</div>
+            
+            <!-- Project 1: TrackKuy -->
+            <div class="group glass-panel rounded-3xl overflow-hidden hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
+                    <img src="trackkuy.png" alt="TrackKuy App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-blue-600 dark:text-blue-400 border border-white/60 dark:border-white/10 shadow-sm">
+                        UI/UX Design
+                    </div>
                 </div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-2">TrackKuy App</h2>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Perancangan UI/UX aplikasi optimasi rute perjalanan wisata di Bali menggunakan metodologi Design Thinking.</p>
-                    <span class="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">Figma</span>
-                </div>
-            </div>
-            <div class="group bg-white dark:bg-darkCard rounded-3xl overflow-hidden border border-zinc-200 dark:border-borderC shadow-sm hover:shadow-xl transition-shadow">
-                <div class="h-64 bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                    <img src="casaos.png" alt="Server Infra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full">DevOps</div>
-                </div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-2">Home Server Infrastructure</h2>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Membangun self-hosted server di perangkat laptop menggunakan Ubuntu Server, konfigurasi CasaOS, Docker containers, dan pengamanan via Tailscale network.</p>
-                    <span class="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">Ubuntu Server</span>
-                </div>
-            </div>
-            <div class="group bg-white dark:bg-darkCard rounded-3xl overflow-hidden border border-zinc-200 dark:border-borderC shadow-sm hover:shadow-xl transition-shadow">
-                <div class="h-64 bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                    <img src="all.png" alt="Jacket Vector Mockup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full">Vector Design</div>
-                </div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-2">Technical Garment Mockup</h2>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Pembuatan desain teknis mockup pakaian (jaket) berbasis vektor yang sangat detail, memadukan estetika visual dengan spesifikasi teknis untuk keperluan produksi.</p>
-                    <span class="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">Adobe Illustrator</span>
+                <div class="p-7 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-blue-500 transition-colors">TrackKuy App</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                            Perancangan antarmuka pengguna komprehensif untuk aplikasi optimasi rute perjalanan wisata di Pulau Bali yang berlandaskan metodologi Design Thinking.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">Figma</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Design System</span>
+                    </div>
                 </div>
             </div>
-            <div class="group bg-white dark:bg-darkCard rounded-3xl overflow-hidden border border-zinc-200 dark:border-borderC shadow-sm hover:shadow-xl transition-shadow">
-                <div class="h-64 bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
+
+            <!-- Project 2: Home Server -->
+            <div class="group glass-panel rounded-3xl overflow-hidden hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
+                    <img src="casaos.png" alt="Home Server Infrastructure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-cyan-600 dark:text-cyan-400 border border-white/60 dark:border-white/10 shadow-sm">
+                        DevOps & Cloud
+                    </div>
+                </div>
+                <div class="p-7 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-cyan-500 transition-colors">Home Server Infrastructure</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                            Membangun infrastruktur server lokal mandiri menggunakan Ubuntu Server, orkestrasi container Docker dengan antarmuka CasaOS, serta tunneling aman melalui jaringan Tailscale.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">Ubuntu Server</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Docker & Tailscale</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Technical Garment Mockup -->
+            <div class="group glass-panel rounded-3xl overflow-hidden hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
+                    <img src="all.png" alt="Technical Garment Mockup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-indigo-600 dark:text-indigo-400 border border-white/60 dark:border-white/10 shadow-sm">
+                        Vector Tech Pack
+                    </div>
+                </div>
+                <div class="p-7 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-indigo-500 transition-colors">Technical Garment Mockup</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                            Perancangan spesifikasi teknis pola jaket berbasis vektor dengan presisi rasio tinggi, memadukan estetika visual street-wear dengan standar dokumentasi produksi konveksi.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">Adobe Illustrator</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Tech Pack</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Lanyard & Event Merchandise -->
+            <div class="group glass-panel rounded-3xl overflow-hidden hover:border-purple-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="lanyard.png" alt="Desain Lanyard Event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full">Merchandise</div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-600 dark:text-purple-400 border border-white/60 dark:border-white/10 shadow-sm">
+                        Merchandise Design
+                    </div>
                 </div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-2">Graphic Design & Event Supplies</h2>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Perancangan desain lanyard, nametag, dan berbagai perlengkapan visual lainnya untuk membangun identitas acara yang kohesif dan profesional.</p>
-                    <span class="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">Adobe Illustrator & Photoshop</span>
-                </div>
-            </div>
-            <div class="group bg-white dark:bg-darkCard rounded-3xl overflow-hidden border border-zinc-200 dark:border-borderC shadow-sm hover:shadow-xl transition-shadow">
-                <div class="h-64 bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                    <img src="minecraft.png" alt="Desain Lanyard Event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full">Game Server</div>
-                </div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-2">Setting Up a Minecraft Server</h2>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Membangun infrastruktur server Minecraft multiplayer di lingkungan Ubuntu Server. Proyek ini mencakup konfigurasi panel manajemen server, optimasi tunneling jaringan untuk akses publik, serta pengaturan port untuk fitur tambahan seperti in-game voice chat.</p>
-                    <span class="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">Ubuntu Server</span>
-                </div>
-            </div>
-            <div class="group bg-white dark:bg-darkCard rounded-3xl overflow-hidden border border-zinc-200 dark:border-borderC shadow-sm hover:shadow-xl transition-shadow">
-                <div class="h-64 bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                    <img src="discord.png" alt="Desain Lanyard Event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-black/90 backdrop-blur text-xs font-bold px-3 py-1.5 rounded-full">Discord Bot & Server</div>
-                </div>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold mb-2">Setting Up a Discord Server</h2>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">Membangun dan mengelola server Discord sebagai pusat komunikasi komunitas pemain. Proyek ini mencakup konfigurasi Webhook dan Bot kustom untuk mengotomatisasi pengumuman server.</p>
-                    <span class="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded">Discord & Webhook</span>
+                <div class="p-7 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-purple-500 transition-colors">Graphic Design & Event Supplies</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                            Perancangan identitas visual berupa lanyard, name-tag, kartu identitas, dan material promosi untuk menciptakan branding kegiatan yang kohesif dan berkarakter.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Illustrator & Photoshop</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Print Media</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Project 5: Minecraft Server -->
+            <div class="group glass-panel rounded-3xl overflow-hidden hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
+                    <img src="minecraft.png" alt="Minecraft Server Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-600 dark:text-emerald-400 border border-white/60 dark:border-white/10 shadow-sm">
+                        Game Server Architecture
+                    </div>
+                </div>
+                <div class="p-7 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-emerald-500 transition-colors">Setting Up a Minecraft Server</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                            Konfigurasi server Minecraft multiplayer di environment Ubuntu Server. Meliputi integrasi dashboard Pterodactyl, Paper Server, alokasi JVM ram, dan tunneling UDP untuk in-game voice chat.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Pterodactyl Panel</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Linux Networking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Discord Server & Bots -->
+            <div class="group glass-panel rounded-3xl overflow-hidden hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
+                    <img src="discord.png" alt="Discord Community Infrastructure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-blue-600 dark:text-blue-400 border border-white/60 dark:border-white/10 shadow-sm">
+                        Community & Bots
+                    </div>
+                </div>
+                <div class="p-7 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-blue-500 transition-colors">Setting Up a Discord Server</h2>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                            Rancang bangun pusat komunikasi komunitas interaktif. Menyiapkan sistem hierarki role terverifikasi, otomatisasi webhook log, serta integrasi bot untuk kemudahan moderasi.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">Discord API & Webhook</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Community Setup</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </main>
+
+    <!-- Glass Search Modal -->
     <div id="searchModal" class="fixed inset-0 z-[60] hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleSearchModal()"></div>
-        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 transition-transform duration-300 scale-95" id="searchBox">
-            <div class="bg-white dark:bg-darkCard rounded-2xl shadow-2xl border border-zinc-200 dark:border-borderC overflow-hidden">
-                <div class="p-4 border-b border-zinc-200 dark:border-borderC flex items-center gap-3">
-                    <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    <input type="text" id="globalSearchInput" onkeyup="performSearch()" placeholder="Cari portofolio, skill, info..." class="w-full bg-transparent border-none focus:outline-none text-zinc-900 dark:text-zinc-100 text-lg">
-                    <button onclick="toggleSearchModal()" class="text-zinc-400 hover:text-zinc-900 text-xs font-bold px-2 py-1 bg-zinc-100 dark:bg-zinc-800 rounded">ESC</button>
+        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="toggleSearchModal()"></div>
+        <div class="absolute top-24 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 transition-all duration-300 scale-95" id="searchBox">
+            <div class="glass-panel rounded-3xl shadow-2xl border border-white/60 dark:border-white/15 overflow-hidden">
+                <div class="p-4 sm:p-5 border-b border-slate-200/70 dark:border-white/10 flex items-center gap-3">
+                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" id="globalSearchInput" onkeyup="performSearch()" placeholder="Cari portofolio, teknologi, biodata..." class="w-full bg-transparent border-none focus:outline-none text-slate-900 dark:text-white text-base sm:text-lg placeholder-slate-400">
+                    <button onclick="toggleSearchModal()" class="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xs font-bold px-2.5 py-1 bg-slate-200/50 dark:bg-white/10 rounded-lg">ESC</button>
                 </div>
                 <div id="searchResults" class="max-h-96 overflow-y-auto p-4 space-y-2">
-                    <div class="text-center text-zinc-500 text-sm py-8">Ketik kata kunci...</div>
+                    <div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Docker", "Figma", "Undiksha") untuk mencari...</div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
     <script>
         function toggleTheme() {
             const html = document.documentElement;
             html.classList.toggle('dark');
-            if (html.classList.contains('dark')) localStorage.setItem('theme', 'dark');
-            else localStorage.setItem('theme', 'light');
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
         }
 
         const siteData = [
-            { title: "Aplikasi TrackKuy", category: "UI/UX Design", desc: "Aplikasi optimasi rute perjalanan wisata di Bali.", link: "karya.html" },
-            { title: "Home Server Infrastructure", category: "DevOps", desc: "Setup Ubuntu Server, Docker, CasaOS, dan jaringan Tailscale.", link: "karya.html" },
-            { title: "Technical Garment Mockup", category: "Vector Design", desc: "Pembuatan desain teknis mockup jaket vektor menggunakan Adobe Illustrator.", link: "karya.html" },
-            { title: "Desain Lanyard & Kebutuhan Event", category: "Graphic Design", desc: "Perancangan lanyard dan merchandise untuk identitas visual acara.", link: "karya.html" },
-            { title: "Setting Up a Minecraft Server", category: "Game Server", desc: "Manajemen Pterodactyl, Paper Server, dan konfigurasi in-game.", link: "karya.html" },
-            { title: "Setting Up a Discord Server", category: "Community", desc: "Pembuatan, konfigurasi role, dan bot untuk server Discord.", link: "karya.html" },
-            { title: "Profil Made Premadharma Yogananda", category: "Tentang", desc: "Biodata, NIM 2415101056, Ilmu Komputer Undiksha.", link: "tentang.html" },
-            { title: "Hubungi Saya", category: "Kontak", desc: "Kirim pesan dan kolaborasi.", link: "kontak.html" }
+            { title: "Aplikasi TrackKuy", category: "UI/UX Design", desc: "Aplikasi optimasi rute perjalanan wisata di Bali dengan Design Thinking.", link: "karya.html" },
+            { title: "Home Server Infrastructure", category: "DevOps", desc: "Setup Ubuntu Server, Docker, CasaOS, dan jaringan aman Tailscale.", link: "karya.html" },
+            { title: "Technical Garment Mockup", category: "Vector Design", desc: "Desain teknis mockup jaket vektor menggunakan Adobe Illustrator.", link: "karya.html" },
+            { title: "Desain Lanyard & Event Merchandise", category: "Graphic Design", desc: "Perancangan identitas visual dan perlengkapan acara.", link: "karya.html" },
+            { title: "Setting Up a Minecraft Server", category: "Game Server", desc: "Manajemen Pterodactyl, Paper Server, dan konfigurasi in-game voice chat.", link: "karya.html" },
+            { title: "Setting Up a Discord Server", category: "Community", desc: "Konfigurasi server komunitas, role permissions, dan integrasi bot otomatis.", link: "karya.html" },
+            { title: "Profil Made Premadharma Yogananda", category: "Tentang", desc: "Biodata, latar belakang pendidikan, NIM 2415101056, Ilmu Komputer Undiksha.", link: "tentang.html" },
+            { title: "Tugas Pencarian JS (Live Filter)", category: "JavaScript", desc: "Pencarian DOM interaktif real-time menggunakan JavaScript murni.", link: "tugas.html" },
+            { title: "Hubungi Saya", category: "Kontak", desc: "Formulir interaktif untuk kirim pesan, kolaborasi, dan diskusi.", link: "kontak.html" }
         ];
 
         const modal = document.getElementById('searchModal');
@@ -163,27 +329,62 @@
         function toggleSearchModal() {
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
-                setTimeout(() => { modal.classList.remove('opacity-0'); searchBox.classList.remove('scale-95'); inputField.focus(); }, 10);
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    searchBox.classList.remove('scale-95');
+                    inputField.focus();
+                }, 10);
             } else {
-                modal.classList.add('opacity-0'); searchBox.classList.add('scale-95');
-                setTimeout(() => { modal.classList.add('hidden'); inputField.value = ''; performSearch(); }, 300);
+                modal.classList.add('opacity-0');
+                searchBox.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    inputField.value = ''; 
+                    performSearch(); 
+                }, 250);
             }
         }
 
         function performSearch() {
-            const query = inputField.value.toLowerCase();
+            const query = inputField.value.toLowerCase().trim();
             const resultsContainer = document.getElementById('searchResults');
-            if (query.length === 0) { resultsContainer.innerHTML = '<div class="text-center text-zinc-500 text-sm py-8">Ketik kata kunci...</div>'; return; }
-            const filtered = siteData.filter(item => item.title.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query) || item.category.toLowerCase().includes(query));
-            if (filtered.length === 0) { resultsContainer.innerHTML = '<div class="text-center text-zinc-500 text-sm py-8">Tidak ada hasil.</div>'; return; }
+            
+            if (query.length === 0) {
+                resultsContainer.innerHTML = '<div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Docker", "Figma", "Undiksha") untuk mencari...</div>';
+                return;
+            }
+
+            const filtered = siteData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.desc.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query)
+            );
+
+            if (filtered.length === 0) {
+                resultsContainer.innerHTML = '<div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Tidak ada hasil yang cocok dengan kata kunci tersebut.</div>';
+                return;
+            }
+
             resultsContainer.innerHTML = filtered.map(item => `
-                <a href="${item.link}" class="block p-4 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition border border-transparent hover:border-zinc-200 dark:hover:border-borderC">
-                    <div class="flex justify-between items-start mb-1"><h4 class="font-bold">${item.title}</h4><span class="text-[10px] uppercase font-bold bg-brand/10 text-brand px-2 py-1 rounded">${item.category}</span></div>
-                    <p class="text-xs text-zinc-500">${item.desc}</p>
+                <a href="${item.link}" class="block p-4 rounded-2xl glass-panel hover:border-blue-500/40 hover:bg-white/90 dark:hover:bg-white/10 transition-all border border-white/40 dark:border-white/10 group">
+                    <div class="flex justify-between items-start mb-1.5">
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-500 transition-colors text-sm">${item.title}</h4>
+                        <span class="text-[10px] uppercase font-bold tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 px-2.5 py-0.5 rounded-full">${item.category}</span>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${item.desc}</p>
                 </a>
             `).join('');
         }
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.classList.contains('hidden')) toggleSearchModal(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                toggleSearchModal();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleSearchModal();
+            }
+        });
     </script>
 </body>
 </html>
