@@ -8,31 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
-        }
-        .dark .glass-panel {
-            background: rgba(13, 16, 28, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .dark .glass-nav {
-            background: rgba(9, 10, 16, 0.75);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-        }
-    </style>
+    <script src="shared.js" defer></script>
     <script>
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -43,10 +19,10 @@
 </head>
 <body class="bg-[#f8fafc] text-slate-800 dark:bg-darkBg dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col relative overflow-x-hidden selection:bg-blue-500 selection:text-white">
 
-    <!-- Ambient Mesh Glows in Background -->
+    <!-- Ambient Background Glows -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div class="absolute -top-32 left-1/3 w-125 h-125 bg-linear-to-br from-blue-400/20 to-indigo-500/20 dark:from-blue-600/15 dark:to-indigo-600/10 rounded-full blur-[110px]"></div>
-        <div class="absolute -bottom-32 -left-20 w-137.5 h-137.5 bg-linear-to-tr from-cyan-400/15 to-purple-400/20 dark:from-cyan-500/10 dark:to-purple-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute -top-32 -left-32 w-80 h-80 bg-blue-500/8 dark:bg-blue-500/5 rounded-full blur-[100px]"></div>
+        <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-indigo-500/6 dark:bg-indigo-500/3 rounded-full blur-[100px]"></div>
     </div>
 
     <!-- Glass Navbar -->
@@ -161,33 +137,36 @@
             <div class="lg:col-span-7">
                 <div class="glass-panel p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
 
-                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah dikirim.');">
+                    <form class="space-y-6" id="contactForm">
+                        <div id="formSuccess" class="hidden p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-sm font-medium text-center">
+                            Pesan berhasil dikirim! Terima kasih.
+                        </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Nama Lengkap</label>
-                                <input type="text" required placeholder="Premadharma Yogananda" 
+                                <label for="nama" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Nama Lengkap</label>
+                                <input type="text" id="nama" name="nama" required placeholder="Premadharma Yogananda"
                                        class="w-full px-4 py-3.5 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400 text-sm transition-all backdrop-blur-sm">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Alamat Email</label>
-                                <input type="email" required placeholder="prema@example.com" 
+                                <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Alamat Email</label>
+                                <input type="email" id="email" name="email" required placeholder="prema@example.com"
                                        class="w-full px-4 py-3.5 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400 text-sm transition-all backdrop-blur-sm">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Subjek / Topik</label>
-                            <input type="text" placeholder="Topik kolaborasi atau diskusi..." 
+                            <label for="subjek" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Subjek / Topik</label>
+                            <input type="text" id="subjek" name="subjek" placeholder="Topik kolaborasi atau diskusi..."
                                    class="w-full px-4 py-3.5 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400 text-sm transition-all backdrop-blur-sm">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Pesan</label>
-                            <textarea rows="4" required placeholder="Ceritakan ide, kebutuhan proyek, atau pertanyaan Anda..." 
+                            <label for="pesan" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Pesan</label>
+                            <textarea id="pesan" name="pesan" rows="4" required placeholder="Ceritakan ide, kebutuhan proyek, atau pertanyaan Anda..."
                                       class="w-full px-4 py-3.5 rounded-2xl bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-slate-800 dark:text-slate-100 placeholder-slate-400 text-sm transition-all backdrop-blur-sm resize-none"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full py-4 rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold tracking-wide transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <button type="submit" id="submitBtn" class="w-full py-4 rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold tracking-wide transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                             <span>Kirim Pesan</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </button>
@@ -201,109 +180,51 @@
     </main>
 
     <!-- Glass Search Modal -->
-    <div id="searchModal" class="fixed inset-0 z-60 hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="toggleSearchModal()"></div>
+    <div id="searchModal" class="fixed inset-0 z-60 hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-label="Cari dalam situs">
+        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="toggleSearchModal()" aria-hidden="true"></div>
         <div class="absolute top-24 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 transition-all duration-300 scale-95" id="searchBox">
             <div class="glass-panel rounded-3xl shadow-2xl border border-white/60 dark:border-white/15 overflow-hidden">
                 <div class="p-4 sm:p-5 border-b border-slate-200/70 dark:border-white/10 flex items-center gap-3">
                     <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    <input type="text" id="globalSearchInput" onkeyup="performSearch()" placeholder="Cari portofolio, teknologi, biodata..." class="w-full bg-transparent border-none focus:outline-none text-slate-900 dark:text-white text-base sm:text-lg placeholder-slate-400">
+                    <input type="text" id="globalSearchInput" onkeyup="performSearch()" placeholder="Cari portofolio, teknologi, biodata..." class="w-full bg-transparent border-none focus:outline-none text-slate-900 dark:text-white text-base sm:text-lg placeholder-slate-400" aria-label="Kata kunci pencarian">
                     <button onclick="toggleSearchModal()" type="button" class="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xs font-bold px-2.5 py-1 bg-slate-200/50 dark:bg-white/10 rounded-lg">ESC</button>
                 </div>
-                <div id="searchResults" class="max-h-96 overflow-y-auto p-4 space-y-2">
+                <div id="searchResults" class="max-h-96 overflow-y-auto p-4 space-y-2" role="region" aria-live="polite">
                     <div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Docker", "Figma", "Undiksha") untuk mencari...</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Footer -->
+    <footer class="w-full mt-12 pt-8 border-t border-slate-200 dark:border-white/10 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p>&copy; 2026 Made Premadharma Yogananda. All rights reserved.</p>
+        <div class="mt-2 flex justify-center gap-4">
+            <a href="https://github.com/chevozz" target="_blank" class="hover:text-blue-500 transition-colors" aria-label="GitHub">GitHub</a>
+            <a href="kontak.html" class="hover:text-blue-500 transition-colors">Email</a>
+        </div>
+    </footer>
+
+    <!-- Page Scripts -->
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            if (html.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-        }
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const original = btn.innerHTML;
 
-        const siteData = [
-            { title: "Aplikasi TrackKuy", category: "UI/UX Design", desc: "Aplikasi optimasi rute perjalanan wisata di Bali dengan Design Thinking.", link: "karya.html" },
-            { title: "Home Server Infrastructure", category: "DevOps", desc: "Setup Ubuntu Server, Docker, CasaOS, dan jaringan aman Tailscale.", link: "karya.html" },
-            { title: "Technical Garment Mockup", category: "Vector Design", desc: "Desain teknis mockup jaket vektor menggunakan Adobe Illustrator.", link: "karya.html" },
-            { title: "Desain Lanyard & Event Merchandise", category: "Graphic Design", desc: "Perancangan identitas visual dan perlengkapan acara.", link: "karya.html" },
-            { title: "Setting Up a Minecraft Server", category: "Game Server", desc: "Manajemen Pterodactyl, Paper Server, dan konfigurasi in-game voice chat.", link: "karya.html" },
-            { title: "Setting Up a Discord Server", category: "Community", desc: "Konfigurasi server komunitas, role permissions, dan integrasi bot otomatis.", link: "karya.html" },
-            { title: "Profil Made Premadharma Yogananda", category: "Tentang", desc: "Biodata, latar belakang pendidikan, NIM 2415101056, Ilmu Komputer Undiksha.", link: "tentang.html" },
-            { title: "Tugas Pencarian JS (Live Filter)", category: "JavaScript", desc: "Pencarian DOM interaktif real-time menggunakan JavaScript murni.", link: "tugas.html" },
-            { title: "Hubungi Saya", category: "Kontak", desc: "Formulir interaktif untuk kirim pesan, kolaborasi, dan diskusi.", link: "kontak.html" }
-        ];
+            btn.disabled = true;
+            btn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Mengirim...';
 
-        const modal = document.getElementById('searchModal');
-        const searchBox = document.getElementById('searchBox');
-        const inputField = document.getElementById('globalSearchInput');
-
-        function toggleSearchModal() {
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                setTimeout(() => {
-                    modal.classList.remove('opacity-0');
-                    searchBox.classList.remove('scale-95');
-                    inputField.focus();
-                }, 10);
-            } else {
-                modal.classList.add('opacity-0');
-                searchBox.classList.add('scale-95');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    inputField.value = ''; 
-                    performSearch(); 
-                }, 250);
-            }
-        }
-
-        function performSearch() {
-            const query = inputField.value.toLowerCase().trim();
-            const resultsContainer = document.getElementById('searchResults');
-            
-            if (query.length === 0) {
-                resultsContainer.innerHTML = '<div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Docker", "Figma", "Undiksha") untuk mencari...</div>';
-                return;
-            }
-
-            const filtered = siteData.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.desc.toLowerCase().includes(query) ||
-                item.category.toLowerCase().includes(query)
-            );
-
-            if (filtered.length === 0) {
-                resultsContainer.innerHTML = '<div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Tidak ada hasil yang cocok dengan kata kunci tersebut.</div>';
-                return;
-            }
-
-            resultsContainer.innerHTML = filtered.map(item => `
-                <a href="${item.link}" class="block p-4 rounded-2xl glass-panel hover:border-blue-500/40 hover:bg-white/90 dark:hover:bg-white/10 transition-all border border-white/40 dark:border-white/10 group">
-                    <div class="flex justify-between items-start mb-1.5">
-                        <h4 class="font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-500 transition-colors text-sm">${item.title}</h4>
-                        <span class="text-[10px] uppercase font-bold tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 px-2.5 py-0.5 rounded-full">${item.category}</span>
-                    </div>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${item.desc}</p>
-                </a>
-            `).join('');
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                toggleSearchModal();
-            }
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-                e.preventDefault();
-                toggleSearchModal();
-            }
+            setTimeout(function() {
+                btn.disabled = false;
+                btn.innerHTML = original;
+                document.getElementById('contactForm').reset();
+                var msg = document.getElementById('formSuccess');
+                msg.classList.remove('hidden');
+                setTimeout(function() { msg.classList.add('hidden'); }, 5000);
+            }, 1500);
         });
     </script>
+
 </body>
 </html>
