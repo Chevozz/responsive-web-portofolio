@@ -4,31 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prema | Karya</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                        },
-                        darkBg: '#090a10',
-                    },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-                        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -69,8 +45,8 @@
 
     <!-- Ambient Mesh Glows in Background -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div class="absolute -top-32 -right-20 w-[500px] h-[500px] bg-gradient-to-bl from-blue-400/20 to-cyan-500/15 dark:from-blue-600/15 dark:to-cyan-600/10 rounded-full blur-[100px]"></div>
-        <div class="absolute top-1/2 -left-32 w-[550px] h-[550px] bg-gradient-to-tr from-indigo-400/20 to-purple-400/15 dark:from-indigo-600/10 dark:to-purple-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute -top-32 -right-20 w-125 h-125 bg-linear-to-bl from-blue-400/20 to-cyan-500/15 dark:from-blue-600/15 dark:to-cyan-600/10 rounded-full blur-[100px]"></div>
+        <div class="absolute top-1/2 -left-32 w-137.5 h-137.5 bg-linear-to-tr from-indigo-400/20 to-purple-400/15 dark:from-indigo-600/10 dark:to-purple-600/10 rounded-full blur-[120px]"></div>
     </div>
 
     <!-- Glass Navbar -->
@@ -79,21 +55,21 @@
             <a href="index.html" class="flex items-center gap-2 group">
                 <span class="text-xl font-extrabold tracking-tight">PREMA<span class="text-blue-500">.</span></span>
             </a>
-            
+
             <!-- Menu Desktop -->
             <div class="hidden md:flex items-center space-x-1 font-medium text-sm">
                 <a href="index.html" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-white/5 transition-all">Beranda</a>
                 <a href="tentang.html" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-white/5 transition-all">Tentang</a>
                 <a href="karya.html" class="px-4 py-2 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold border border-blue-500/20 transition-all">Karya</a>
                 <a href="kontak.html" class="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/40 dark:hover:bg-white/5 transition-all">Kontak</a>
-                
+
                 <div class="flex items-center gap-2.5 border-l border-slate-200 dark:border-white/10 pl-5 ml-2">
-                    <button onclick="toggleSearchModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400/40 transition-all text-xs" title="Cari Informasi">
-                        <svg class="w-4 h-4 fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <button onclick="toggleSearchModal()" type="button" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400/40 transition-all text-xs" title="Cari Informasi">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         <span>Cari...</span>
                         <kbd class="px-1.5 py-0.5 rounded bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 font-mono text-[10px]">Ctrl+K</kbd>
                     </button>
-                    <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm" aria-label="Toggle Theme">
+                    <button onclick="toggleTheme()" type="button" class="p-2.5 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-white/10 transition-all shadow-sm" aria-label="Toggle Theme">
                         <svg class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                         <svg class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     </button>
@@ -102,14 +78,14 @@
 
             <!-- Menu Mobile Trigger -->
             <div class="md:hidden flex items-center gap-2">
-                <button onclick="toggleSearchModal()" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300">
+                <button onclick="toggleSearchModal()" type="button" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300" aria-label="Cari">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
-                <button onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300">
+                <button onclick="toggleTheme()" type="button" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300" aria-label="Toggle Theme">
                     <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
-                <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200">
+                <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" type="button" class="p-2 rounded-xl bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200" aria-label="Buka Menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
@@ -125,30 +101,30 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 max-w-6xl pt-32 pb-20 relative z-10 flex-grow">
-        
+    <main class="container mx-auto px-6 max-w-6xl pt-32 pb-20 relative z-10 grow">
+
         <!-- Header -->
         <div class="mb-12">
             <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-500/20">Showcase Proyek</span>
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mt-4">
-                Pilihan <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Karya.</span>
+                Pilihan <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-500">Karya.</span>
             </h1>
             <p class="text-slate-500 dark:text-slate-400 mt-2 text-base">Eksplorasi antarmuka digital, desain grafis teknis, serta pengelolaan infrastruktur sistem.</p>
         </div>
 
         <!-- Project Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
+
             <!-- Project 1: TrackKuy -->
             <div class="group glass-panel rounded-3xl overflow-hidden hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="trackkuy.png" alt="TrackKuy App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-blue-600 dark:text-blue-400 border border-white/60 dark:border-white/10 shadow-sm">
                         UI/UX Design
                     </div>
                 </div>
-                <div class="p-7 flex-grow flex flex-col justify-between">
+                <div class="p-7 grow flex flex-col justify-between">
                     <div>
                         <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-blue-500 transition-colors">TrackKuy App</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
@@ -166,12 +142,12 @@
             <div class="group glass-panel rounded-3xl overflow-hidden hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="casaos.png" alt="Home Server Infrastructure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-cyan-600 dark:text-cyan-400 border border-white/60 dark:border-white/10 shadow-sm">
-                        DevOps & Cloud
+                        DevOps &amp; Cloud
                     </div>
                 </div>
-                <div class="p-7 flex-grow flex flex-col justify-between">
+                <div class="p-7 grow flex flex-col justify-between">
                     <div>
                         <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-cyan-500 transition-colors">Home Server Infrastructure</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
@@ -180,7 +156,7 @@
                     </div>
                     <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
                         <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">Ubuntu Server</span>
-                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Docker & Tailscale</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Docker &amp; Tailscale</span>
                     </div>
                 </div>
             </div>
@@ -189,12 +165,12 @@
             <div class="group glass-panel rounded-3xl overflow-hidden hover:border-indigo-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="all.png" alt="Technical Garment Mockup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-indigo-600 dark:text-indigo-400 border border-white/60 dark:border-white/10 shadow-sm">
                         Vector Tech Pack
                     </div>
                 </div>
-                <div class="p-7 flex-grow flex flex-col justify-between">
+                <div class="p-7 grow flex flex-col justify-between">
                     <div>
                         <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-indigo-500 transition-colors">Technical Garment Mockup</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
@@ -212,20 +188,20 @@
             <div class="group glass-panel rounded-3xl overflow-hidden hover:border-purple-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="lanyard.png" alt="Desain Lanyard Event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-purple-600 dark:text-purple-400 border border-white/60 dark:border-white/10 shadow-sm">
                         Merchandise Design
                     </div>
                 </div>
-                <div class="p-7 flex-grow flex flex-col justify-between">
+                <div class="p-7 grow flex flex-col justify-between">
                     <div>
-                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-purple-500 transition-colors">Graphic Design & Event Supplies</h2>
+                        <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-purple-500 transition-colors">Graphic Design &amp; Event Supplies</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
                             Perancangan identitas visual berupa lanyard, name-tag, kartu identitas, dan material promosi untuk menciptakan branding kegiatan yang kohesif dan berkarakter.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
-                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Illustrator & Photoshop</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">Illustrator &amp; Photoshop</span>
                         <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Print Media</span>
                     </div>
                 </div>
@@ -235,12 +211,12 @@
             <div class="group glass-panel rounded-3xl overflow-hidden hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="minecraft.png" alt="Minecraft Server Setup" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-600 dark:text-emerald-400 border border-white/60 dark:border-white/10 shadow-sm">
                         Game Server Architecture
                     </div>
                 </div>
-                <div class="p-7 flex-grow flex flex-col justify-between">
+                <div class="p-7 grow flex flex-col justify-between">
                     <div>
                         <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-emerald-500 transition-colors">Setting Up a Minecraft Server</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
@@ -258,12 +234,12 @@
             <div class="group glass-panel rounded-3xl overflow-hidden hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                 <div class="h-64 sm:h-72 relative overflow-hidden bg-slate-100 dark:bg-slate-900/50">
                     <img src="discord.png" alt="Discord Community Infrastructure" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="absolute top-4 right-4 glass-panel px-3.5 py-1.5 rounded-full text-xs font-bold text-blue-600 dark:text-blue-400 border border-white/60 dark:border-white/10 shadow-sm">
-                        Community & Bots
+                        Community &amp; Bots
                     </div>
                 </div>
-                <div class="p-7 flex-grow flex flex-col justify-between">
+                <div class="p-7 grow flex flex-col justify-between">
                     <div>
                         <h2 class="text-2xl font-bold mb-2.5 text-slate-800 dark:text-slate-100 group-hover:text-blue-500 transition-colors">Setting Up a Discord Server</h2>
                         <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
@@ -271,7 +247,7 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-2 pt-4 border-t border-slate-200/60 dark:border-white/10">
-                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">Discord API & Webhook</span>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">Discord API &amp; Webhook</span>
                         <span class="text-xs font-semibold px-3 py-1 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/10">Community Setup</span>
                     </div>
                 </div>
@@ -282,14 +258,14 @@
     </main>
 
     <!-- Glass Search Modal -->
-    <div id="searchModal" class="fixed inset-0 z-[60] hidden opacity-0 transition-opacity duration-300">
+    <div id="searchModal" class="fixed inset-0 z-60 hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onclick="toggleSearchModal()"></div>
         <div class="absolute top-24 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 transition-all duration-300 scale-95" id="searchBox">
             <div class="glass-panel rounded-3xl shadow-2xl border border-white/60 dark:border-white/15 overflow-hidden">
                 <div class="p-4 sm:p-5 border-b border-slate-200/70 dark:border-white/10 flex items-center gap-3">
                     <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     <input type="text" id="globalSearchInput" onkeyup="performSearch()" placeholder="Cari portofolio, teknologi, biodata..." class="w-full bg-transparent border-none focus:outline-none text-slate-900 dark:text-white text-base sm:text-lg placeholder-slate-400">
-                    <button onclick="toggleSearchModal()" class="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xs font-bold px-2.5 py-1 bg-slate-200/50 dark:bg-white/10 rounded-lg">ESC</button>
+                    <button onclick="toggleSearchModal()" type="button" class="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 text-xs font-bold px-2.5 py-1 bg-slate-200/50 dark:bg-white/10 rounded-lg">ESC</button>
                 </div>
                 <div id="searchResults" class="max-h-96 overflow-y-auto p-4 space-y-2">
                     <div class="text-center text-slate-400 dark:text-slate-500 text-sm py-8">Ketik kata kunci (misal: "TrackKuy", "Docker", "Figma", "Undiksha") untuk mencari...</div>
